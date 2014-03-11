@@ -1,0 +1,105 @@
+/* My-t v0.1 (https://github.com/emasi/my-t)
+ * Licensed under MIT (https://github.com/emasi/my-t/blob/master/LICENSE) */
+
+//Break points
+$break-xsmall: 300px;
+$break-small: 481px;
+$break-medium: 769px;
+$break-large: 1201px;
+
+//Generic constants
+$sb-constant: 21px;
+$cols-number: 12;
+$col-width: 100% / $cols-number;
+$class-col-xs: col-xs;
+$class-col-s: col-s;
+$class-col-m: col-m;
+$class-col-l: col-l;
+
+.my-t-grid {
+  width: $break-xsmall;
+  margin-left: auto;
+  margin-right: auto;
+  .row {
+    margin-bottom: 10px;
+  }
+  [class*='col-'] {
+    padding: 10px 15px 10px 15px;
+  }
+  [class*='col-xs-'] {
+    float: left;
+  }
+  @media screen and (min-width: $break-small) {
+    width: $break-small - $sb-constant;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: $break-medium - $sb-constant;
+    [class*='col-m-'] {
+      float: left;
+    }
+  }
+  @media screen and (min-width: $break-large) {
+    width: $break-large - $sb-constant;
+    [class*='col-l-'] {
+      float: left;
+    }
+  }
+}
+
+.my-t-grid.left-aligned {
+  margin-left: 0;
+}
+
+.my-t-grid.right-aligned {
+  margin-right: 0;
+}
+
+.my-t-grid:after, .my-t-grid .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@for $i from 1 through $cols-number {
+  .#{$class-col-xs}-#{$i} {
+    width: $col-width * $i;
+  }
+}
+
+/*-- BEGIN: Mediaqueries -- */
+@media only screen and (min-width: 300px) {}
+
+@media only screen and (min-width: $break-small) {
+  .my-t-grid [class*='col-s-'] {
+    float: left;
+  }
+  @for $i from 1 through $cols-number {
+    .#{$class-col-s}-#{$i} {
+      width: $col-width * $i;
+    }
+  }
+}
+
+@media only screen and (min-width: $break-medium) {
+  @for $i from 1 through $cols-number {
+    .#{$class-col-m}-#{$i} {
+      width: $col-width * $i;
+    }
+  }
+}
+
+@media only screen and (min-width: $break-large) {
+  @for $i from 1 through $cols-number {
+    .#{$class-col-l}-#{$i} {
+      width: $col-width * $i;
+    }
+  }
+}
+
+/*-- END: Mediaqueries -- */
