@@ -18,6 +18,9 @@
   .my-t-grid {
     width: 460px;
   }
+  .my-t-grid [class*='col-s-'] {
+    float: left;
+  }
 }
 @media screen and (min-width: 769px) {
   .my-t-grid {
@@ -106,10 +109,6 @@
 
 /*-- BEGIN: Mediaqueries -- */
 @media only screen and (min-width: 481px) {
-  .my-t-grid [class*='col-s-'] {
-    float: left;
-  }
-
   .col-s-1 {
     width: 8.33333%;
   }

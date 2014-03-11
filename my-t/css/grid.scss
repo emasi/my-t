@@ -16,6 +16,18 @@ $class-col-s: col-s;
 $class-col-m: col-m;
 $class-col-l: col-l;
 
+@function calc-col($col-index) {
+  @return $col-width * $col-index;
+}
+
+@mixin col-classes($class-name){
+  @for $i from 1 through $cols-number {
+    .#{$class-name}-#{$i} {
+      width: calc-col($i);
+    }
+  }
+}
+
 .my-t-grid {
   width: $break-xsmall;
   margin-left: auto;
@@ -31,6 +43,9 @@ $class-col-l: col-l;
   }
   @media screen and (min-width: $break-small) {
     width: $break-small - $sb-constant;
+    [class*='col-s-'] {
+      float: left;
+    }
   }
   @media screen and (min-width: $break-medium) {
     width: $break-medium - $sb-constant;
@@ -66,40 +81,21 @@ $class-col-l: col-l;
   box-sizing: border-box;
 }
 
-@for $i from 1 through $cols-number {
-  .#{$class-col-xs}-#{$i} {
-    width: $col-width * $i;
-  }
-}
+@include col-classes($class-col-xs);
 
 /*-- BEGIN: Mediaqueries -- */
 @media only screen and (min-width: 300px) {}
 
 @media only screen and (min-width: $break-small) {
-  .my-t-grid [class*='col-s-'] {
-    float: left;
-  }
-  @for $i from 1 through $cols-number {
-    .#{$class-col-s}-#{$i} {
-      width: $col-width * $i;
-    }
-  }
+  @include col-classes($class-col-s);
 }
 
 @media only screen and (min-width: $break-medium) {
-  @for $i from 1 through $cols-number {
-    .#{$class-col-m}-#{$i} {
-      width: $col-width * $i;
-    }
-  }
+  @include col-classes($class-col-m);
 }
 
 @media only screen and (min-width: $break-large) {
-  @for $i from 1 through $cols-number {
-    .#{$class-col-l}-#{$i} {
-      width: $col-width * $i;
-    }
-  }
+  @include col-classes($class-col-l);
 }
 
 /*-- END: Mediaqueries -- */
