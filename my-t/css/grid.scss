@@ -22,6 +22,11 @@ $class-col-l: col-l;
       width: $col-width * $i;
     }
   }
+  @for $i from 1 through $cols-number {
+    .#{$class-name}-offset-#{$i} {
+      margin-left: $col-width * $i;
+    }
+  }
 }
 
 .my-t-grid {
