@@ -1,7 +1,7 @@
 /* My-t v0.1 (https://github.com/emasi/my-t)
  * Licensed under MIT (https://github.com/emasi/my-t/blob/master/LICENSE) */
 .my-t-grid {
-  width: 279px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
